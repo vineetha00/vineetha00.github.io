@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vineetha Vallish Kumar — ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1628;
+    --navy-mid: #112240;
+    --navy-light: #1A3259;
+    --cyan: #00CFFF;
+    --cyan-dim: #00CFFF22;
+    --cyan-glow: #00CFFF44;
+    --white: #F0F6FC;
+    --gray: #8899BB;
+    --gray-dim: #445577;
+    --green: #64FFDA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 20px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, var(--navy) 60%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--cyan); font-size: 0.95rem; letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--gray); text-decoration: none; font-size: 0.85rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 60px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, #00CFFF0A 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, #0066FF08 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(var(--cyan) 1px, transparent 1px),
+      linear-gradient(90deg, var(--cyan) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--cyan); font-size: 0.9rem; letter-spacing: 0.15em;
+    margin-bottom: 24px; opacity: 0;
+    animation: fadeUp 0.6s ease 0.3s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700; line-height: 1.05;
+    margin-bottom: 16px; opacity: 0;
+    animation: fadeUp 0.6s ease 0.5s forwards;
+  }
+
+  .hero-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    font-weight: 400; color: var(--gray);
+    margin-bottom: 32px; min-height: 1.2em;
+    opacity: 0; animation: fadeUp 0.6s ease 0.7s forwards;
+  }
+
+  .hero-role span { color: var(--cyan); }
+
+  .hero-desc {
+    font-size: 1.05rem; color: var(--gray); line-height: 1.75;
+    max-width: 560px; margin-bottom: 48px;
+    opacity: 0; animation: fadeUp 0.6s ease 0.9s forwards;
+  }
+
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.6s ease 1.1s forwards;
+  }
+
+  .btn {
+    padding: 14px 28px; border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+    letter-spacing: 0.05em; cursor: pointer; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: transparent; color: var(--cyan);
+    border: 1px solid var(--cyan);
+  }
+  .btn-primary:hover {
+    background: var(--cyan-dim); box-shadow: 0 0 20px var(--cyan-glow);
+  }
+  .btn-secondary {
+    background: transparent; color: var(--gray);
+    border: 1px solid var(--gray-dim);
+  }
+  .btn-secondary:hover { color: var(--white); border-color: var(--white); }
+
+  /* STATS BAR */
+  .stats-bar {
+    padding: 40px 60px;
+    background: var(--navy-mid);
+    border-top: 1px solid #1E3A5F;
+    border-bottom: 1px solid #1E3A5F;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+
+  .stat-item { text-align: center; padding: 8px; }
+  .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem; font-weight: 700; color: var(--cyan);
+    display: block; line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem; color: var(--gray);
+    letter-spacing: 0.06em; text-transform: uppercase; margin-top: 6px;
+    display: block;
+  }
+
+  /* SECTIONS */
+  section { padding: 100px 60px; max-width: 1100px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--cyan); font-size: 0.8rem; letter-spacing: 0.18em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 600;
+    margin-bottom: 48px; line-height: 1.2;
+  }
+
+  .divider {
+    width: 48px; height: 2px; background: var(--cyan);
+    margin: 16px 0 48px;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 3fr 2fr; gap: 64px;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--gray); line-height: 1.8; margin-bottom: 20px;
+    font-size: 1.02rem;
+  }
+  .about-text strong { color: var(--white); font-weight: 500; }
+
+  .skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .skill-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+    color: var(--cyan); padding: 8px 12px;
+    background: var(--cyan-dim); border: 1px solid var(--cyan-glow);
+    border-radius: 2px;
+  }
+
+  /* RESEARCH */
+  .research-grid { display: grid; gap: 24px; }
+
+  .research-card {
+    padding: 32px; background: var(--navy-mid);
+    border: 1px solid #1E3A5F; border-radius: 4px;
+    position: relative; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .research-card:hover {
+    border-color: var(--cyan-glow);
+    transform: translateY(-2px);
+  }
+  .research-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%; background: var(--cyan);
+  }
+
+  .research-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--cyan);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 12px; display: block;
+  }
+  .research-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem; font-weight: 600; margin-bottom: 10px;
+  }
+  .research-desc { color: var(--gray); font-size: 0.92rem; line-height: 1.7; }
+
+  .research-metrics {
+    display: flex; gap: 20px; margin-top: 16px; flex-wrap: wrap;
+  }
+  .metric {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+    color: var(--green); background: #64FFDA11;
+    padding: 4px 10px; border-radius: 2px;
+    border: 1px solid #64FFDA33;
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .project-card {
+    padding: 28px; background: var(--navy-mid);
+    border: 1px solid #1E3A5F; border-radius: 4px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+  }
+  .project-card:hover {
+    border-color: var(--cyan-glow); transform: translateY(-3px);
+  }
+  .project-card.in-progress::after {
+    content: 'IN PROGRESS';
+    position: absolute; top: 16px; right: 16px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    color: var(--cyan); background: var(--cyan-dim);
+    border: 1px solid var(--cyan-glow); padding: 3px 8px; border-radius: 2px;
+    letter-spacing: 0.1em;
+  }
+
+  .project-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .project-icon { font-size: 1.4rem; }
+  .project-links { display: flex; gap: 12px; }
+  .project-link {
+    color: var(--gray); text-decoration: none; font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--cyan); }
+
+  .project-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem; font-weight: 600; margin-bottom: 10px;
+  }
+  .project-desc {
+    color: var(--gray); font-size: 0.88rem; line-height: 1.65;
+    flex: 1; margin-bottom: 20px;
+  }
+
+  .project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .project-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    color: var(--gray); background: #1A3259; padding: 4px 8px; border-radius: 2px;
+  }
+
+  /* EXPERIENCE */
+  .exp-timeline { display: grid; gap: 0; position: relative; }
+  .exp-timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 0;
+    width: 1px; background: linear-gradient(to bottom, var(--cyan), transparent);
+  }
+
+  .exp-item {
+    padding: 0 0 48px 40px; position: relative;
+  }
+  .exp-item::before {
+    content: ''; position: absolute; left: -4px; top: 8px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--navy); border: 2px solid var(--cyan);
+  }
+
+  .exp-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--cyan); letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .exp-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem; font-weight: 600; margin-bottom: 4px;
+  }
+  .exp-company { color: var(--gray); font-size: 0.9rem; margin-bottom: 12px; }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li {
+    color: var(--gray); font-size: 0.88rem; line-height: 1.65;
+    padding: 4px 0; display: flex; gap: 10px;
+  }
+  .exp-bullets li::before {
+    content: '▸'; color: var(--cyan); flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    text-align: center; padding: 80px 60px;
+    background: var(--navy-mid);
+    border-top: 1px solid #1E3A5F;
+  }
+  .contact-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .contact-desc { color: var(--gray); margin-bottom: 40px; font-size: 1rem; }
+  .contact-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .contact-link {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+    color: var(--gray); text-decoration: none; letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--cyan); }
+
+  footer {
+    text-align: center; padding: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    color: var(--gray-dim); border-top: 1px solid #1E3A5F;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 0 24px; }
+    .stats-bar { padding: 32px 24px; grid-template-columns: repeat(2, 1fr); }
+    section { padding: 64px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-section { padding: 60px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">VVK.dev</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">// vineethavc25@gmail.com · Los Angeles, CA</p>
+    <h1 class="hero-name">Vineetha<br>Vallish Kumar</h1>
+    <p class="hero-role"><span id="typed-role"></span><span class="cursor">|</span></p>
+    <p class="hero-desc">
+      ML engineer building AI systems that work in production, in regulated environments, 
+      and under real constraints — from biosignal reconstruction in MRI scanners to 
+      edge model compression on consumer hardware.
+    </p>
+    <div class="hero-cta">
+      <a href="https://github.com/vineetha00" target="_blank" class="btn btn-primary">GitHub →</a>
+      <a href="https://www.linkedin.com/in/vineetha-v00" target="_blank" class="btn btn-secondary">LinkedIn →</a>
+      <a href="#contact" class="btn btn-secondary">Get in touch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar" id="stats">
+  <div class="stat-item">
+    <span class="stat-number" data-target="0.94" data-decimal="2" data-prefix="">0.00</span>
+    <span class="stat-label">ECG Reconstruction Correlation</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number" data-target="4.4" data-decimal="1" data-suffix="x">0.0x</span>
+    <span class="stat-label">Edge Model Compression</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number" data-target="44" data-suffix="%">0%</span>
+    <span class="stat-label">Faster Training Convergence</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number" data-target="13" data-suffix="M+">0M+</span>
+    <span class="stat-label">Samples in Stress Detection Model</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-eyebrow">01 — About</p>
+  <h2 class="section-title">Who I am</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm an <strong>M.S. student at USC</strong> (ECE, Machine Learning & Data Science, Dec 2026) 
+        building at the intersection of production ML, biosignal research, and embedded systems. 
+        My work spans clinical AI collaborations with CHLA, Verizon-funded wireless research, 
+        and enterprise LLM infrastructure at SHash AI.
+      </p>
+      <p>
+        Currently interning at <strong>Alcon</strong> on supply chain analytics — developing optimization 
+        models whose insights are under leadership consideration for Q3 implementation, and 
+        building a predictive dissociation risk system that fills a gap no proactive tooling 
+        currently covers across North America cold-chain operations.
+      </p>
+      <p>
+        Before grad school, I spent two years at <strong>Tata Consultancy Services</strong> doing 
+        embedded C firmware development for automotive infotainment systems, working with 
+        CAN bus diagnostics and real-time constraints. That hardware-first background is 
+        what makes my ML work different.
+      </p>
+    </div>
+    <div>
+      <div class="skills-grid">
+        <span class="skill-tag">PyTorch / TensorFlow</span>
+        <span class="skill-tag">LLM Fine-tuning</span>
+        <span class="skill-tag">RAG / Agentic AI</span>
+        <span class="skill-tag">AWS SageMaker</span>
+        <span class="skill-tag">Federated Learning</span>
+        <span class="skill-tag">Edge AI / QAT</span>
+        <span class="skill-tag">Biosignal Processing</span>
+        <span class="skill-tag">C / C++ Firmware</span>
+        <span class="skill-tag">Linear Programming</span>
+        <span class="skill-tag">Monte Carlo Sim</span>
+        <span class="skill-tag">XGBoost / Prophet</span>
+        <span class="skill-tag">Tableau / Power BI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" style="background: var(--navy-mid); max-width: 100%; padding: 100px 0;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 60px;">
+    <p class="section-eyebrow">02 — Research</p>
+    <h2 class="section-title">What I've built in the lab</h2>
+    <div class="divider"></div>
+    <div class="research-grid">
+
+      <div class="research-card">
+        <span class="research-tag">Biosignal AI · USC Khan Lab / CHLA · IEEE TBME / MRM (in prep)</span>
+        <h3 class="research-title">ECG Reconstruction During MRI Scanning</h3>
+        <p class="research-desc">
+          Built a BiLSTM + transfer learning pipeline to reconstruct 12-lead ECG from a 
+          wearable patch device during low-field MRI — a hard problem because MRI introduces 
+          severe electromagnetic noise that corrupts cardiac signals. Cross-functional 
+          collaboration with electrical and RF engineers at CHLA. Manuscript in preparation.
+        </p>
+        <div class="research-metrics">
+          <span class="metric">r = 0.94 at rest</span>
+          <span class="metric">r = 0.89 active MRI</span>
+          <span class="metric">+20% over baseline</span>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <span class="research-tag">Multimodal AI · USC Khan Lab</span>
+        <h3 class="research-title">Stress Detection from Wearable Biosignals</h3>
+        <p class="research-desc">
+          ResNet–BiLSTM model with attention for stress-level inference from 
+          simultaneous PPG, GSR, and HRV signals. Trained on 13M+ samples.
+        </p>
+        <div class="research-metrics">
+          <span class="metric">~0.87 correlation</span>
+          <span class="metric">~85% accuracy</span>
+          <span class="metric">13M+ samples</span>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <span class="research-tag">Wireless AI · USC WiDeS Lab · Verizon-Funded</span>
+        <h3 class="research-title">PMNet — Radio Pathloss Prediction</h3>
+        <p class="research-desc">
+          Improving training efficiency and cross-city generalization of PMNet, a published 
+          deep learning model that replaces slow ray-tracing simulations for wireless network 
+          planning. Designed on-the-fly random augmentation that cut epochs-to-convergence 
+          44% at equivalent accuracy, via distributed DDP training on USC's CARC HPC cluster.
+        </p>
+        <div class="research-metrics">
+          <span class="metric">44% faster convergence</span>
+          <span class="metric">SSIM ~0.91</span>
+          <span class="metric">Multi-node DDP</span>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <span class="research-tag">Agentic AI · USC Data Science Lab · Prof. Prasanna</span>
+        <h3 class="research-title">DeepCommit — Software Evolution DAG Reconstruction</h3>
+        <p class="research-desc">
+          Contributing to DeepCommit, an open-source agentic pipeline that reconstructs 
+          verifiable Milestone DAGs from noisy commit histories using Claude Opus 4.5. 
+          Working with PhD student Gangda Deng on features and scalability for future RL training.
+        </p>
+        <div class="research-metrics">
+          <span class="metric">87.1% test collection</span>
+          <span class="metric">arXiv published</span>
+          <span class="metric">Open-source</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-eyebrow">03 — Projects</p>
+  <h2 class="section-title">Things I've shipped</h2>
+  <div class="divider"></div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-icon">📦</span>
+        <div class="project-links">
+          <a href="https://github.com/vineetha00/promptops" target="_blank" class="project-link">GitHub ↗</a>
+          <a href="https://pypi.org/project/promptops" target="_blank" class="project-link">PyPI ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">PromptOps — Git for LLM Prompts</h3>
+      <p class="project-desc">
+        Open-source CLI bringing Git-style version control to LLM prompts. 
+        Semantic diffing via sentence-transformers, Thompson Sampling A/B testing, 
+        and a GitHub Actions regression gate that blocks deploys on quality drops.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Thompson Sampling</span>
+        <span class="project-tag">MCP</span>
+        <span class="project-tag">GitHub Actions</span>
+        <span class="project-tag">PyPI</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-icon">⚡</span>
+        <div class="project-links">
+          <a href="https://github.com/vineetha00/SynapNet-Edge" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">SynapNet-Edge — Edge Model Compression</h3>
+      <p class="project-desc">
+        Hybrid SSM-attention-memory architecture with component-aware joint quantization 
+        (2-bit SSM QAT, 4-bit attention via SmoothQuant + AWQ) and a learned 
+        BAEE memory-eviction policy. 4.4x compression with no accuracy loss.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">PyTorch</span>
+        <span class="project-tag">QAT</span>
+        <span class="project-tag">SSM / Mamba</span>
+        <span class="project-tag">Edge AI</span>
+        <span class="project-tag">Hugging Face</span>
+      </div>
+    </div>
+
+    <div class="project-card in-progress">
+      <div class="project-top">
+        <span class="project-icon">🔬</span>
+        <div class="project-links"></div>
+      </div>
+      <h3 class="project-name">AgentAudit — Multi-Agent Evaluation</h3>
+      <p class="project-desc">
+        Open-source Python library that instruments multi-agent AI pipelines and 
+        evaluates the workflow, not just the final output. Scores inter-agent 
+        handoff quality via LLM-as-judge, attributes failures to specific agents, 
+        and detects degenerate retry loops with cost guardrails.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">LangGraph</span>
+        <span class="project-tag">CrewAI</span>
+        <span class="project-tag">Ollama</span>
+        <span class="project-tag">LLM-as-judge</span>
+        <span class="project-tag">Python</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background: var(--navy-mid); max-width: 100%; padding: 100px 0;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 60px;">
+    <p class="section-eyebrow">04 — Experience</p>
+    <h2 class="section-title">Where I've worked</h2>
+    <div class="divider"></div>
+    <div class="exp-timeline">
+
+      <div class="exp-item">
+        <p class="exp-date">2026 – PRESENT</p>
+        <h3 class="exp-title">Data Science & ML Intern</h3>
+        <p class="exp-company">Alcon · Supply Chain NA · Fort Worth, TX</p>
+        <ul class="exp-bullets">
+          <li>Collaborated cross-functionally with Transportation, Customer Service, Data Science, and S&OP to surface optimization insights under leadership consideration for Q3 implementation.</li>
+          <li>Building predictive dissociation risk model — shipment-level early warning system that fills a current gap; no proactive anomaly tracking exists today.</li>
+          <li>Pipeline: K-Means, XGBoost, Prophet, PuLP linear programming, Monte Carlo on AWS SageMaker with Athena and MLflow.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-date">NOV 2025 – PRESENT</p>
+        <h3 class="exp-title">LLM Engineer Intern</h3>
+        <p class="exp-company">SHash AI · Remote</p>
+        <ul class="exp-bullets">
+          <li>Architecting enterprise LLM system with privacy-preserving GenAI and federated learning (Flower); contributing to a forthcoming patent.</li>
+          <li>Engineered client-side backpropagation independent of server updates, ensuring gradients don't propagate to the server.</li>
+          <li>Extending to Mamba-based architectures for improved long-context efficiency in federated settings.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-date">JUN 2024 – DEC 2024</p>
+        <h3 class="exp-title">Machine Learning Engineer Intern</h3>
+        <p class="exp-company">Analogica Software · Bangalore, India</p>
+        <ul class="exp-bullets">
+          <li>Fine-tuned BERT for healthcare NLP; improved F1 by 15%, cut inference latency ~25% via distillation.</li>
+          <li>Built computer-vision QC pipeline (~92% accuracy); productionized 5+ models in ONNX/TorchScript.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-date">OCT 2022 – MAY 2024</p>
+        <h3 class="exp-title">Embedded Software Developer</h3>
+        <p class="exp-company">Tata Consultancy Services · Bangalore, India</p>
+        <ul class="exp-bullets">
+          <li>Diagnosed CAN bus infotainment defect via test bench analysis, simulation, and C firmware fix. Cut lighting latency 50% (200ms → &lt;100ms).</li>
+          <li>Owned unit test coverage for brightness and Vdata components across teams.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <p class="section-eyebrow" style="justify-content: center; margin-bottom: 12px;">05 — Contact</p>
+  <h2 class="contact-title">Let's build something together</h2>
+  <p class="contact-desc">
+    Open to full-time roles in R&D, medical AI, and production ML systems.<br>
+    Graduating December 2026. Based in Los Angeles, CA.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:vineethavc25@gmail.com" class="contact-link">vineethavc25@gmail.com</a>
+    <span style="color: var(--gray-dim)">·</span>
+    <a href="https://www.linkedin.com/in/vineetha-v00" target="_blank" class="contact-link">LinkedIn</a>
+    <span style="color: var(--gray-dim)">·</span>
+    <a href="https://github.com/vineetha00" target="_blank" class="contact-link">GitHub</a>
+    <span style="color: var(--gray-dim)">·</span>
+    <a href="tel:2132756589" class="contact-link">213-275-6589</a>
+  </div>
+</div>
+
+<footer>
+  Built by Vineetha Vallish Kumar · 2026
+</footer>
+
+<script>
+// TYPING EFFECT
+const roles = [
+  'ML Researcher.',
+  'Embedded Systems Engineer.',
+  'Production AI Builder.',
+  'Biosignal Scientist.',
+];
+let roleIdx = 0, charIdx = 0, deleting = false;
+const typedEl = document.getElementById('typed-role');
+
+function type() {
+  const current = roles[roleIdx];
+  if (!deleting) {
+    typedEl.textContent = current.slice(0, charIdx + 1);
+    charIdx++;
+    if (charIdx === current.length) {
+      deleting = true;
+      setTimeout(type, 2200);
+      return;
+    }
+  } else {
+    typedEl.textContent = current.slice(0, charIdx - 1);
+    charIdx--;
+    if (charIdx === 0) {
+      deleting = false;
+      roleIdx = (roleIdx + 1) % roles.length;
+    }
+  }
+  setTimeout(type, deleting ? 45 : 80);
+}
+setTimeout(type, 1400);
+
+// CURSOR BLINK
+const cursor = document.querySelector('.cursor');
+setInterval(() => cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0', 530);
+
+// COUNTER ANIMATION
+function animateCounters() {
+  document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+    const target = parseFloat(el.dataset.target);
+    const decimal = parseInt(el.dataset.decimal || 0);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = target * eased;
+      el.textContent = value.toFixed(decimal) + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+const statsObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animateCounters(); statsObserver.disconnect(); } });
+}, { threshold: 0.3 });
+statsObserver.observe(document.getElementById('stats'));
+
+// SCROLL FADE-IN
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.research-card, .project-card, .exp-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
