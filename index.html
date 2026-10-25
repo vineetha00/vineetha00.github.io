@@ -591,7 +591,7 @@
       </div>
       <h3 class="project-name">VisionFlow — On-Device Vision-Language Pipeline</h3>
       <p class="project-desc">
-        An edge-first quantized VLM pipeline (SmolVLM) that detects your hardware, picks a model size that fits, and constrains decoding so the JSON output is valid by construction. On 150 real DocVQA documents, grammar-constrained decoding took usable output from 2% to 79% and was faster. INT4 runs in 1.85 GB of VRAM at 47.7 tok/s on an L40S, and the ONNX vision encoder runs 67.8x faster on CUDA than CPU. Every benchmark row runs in a fresh subprocess, and a TensorRT row that silently fell back to CPU is flagged rather than reported.
+        An edge-first quantized VLM pipeline (SmolVLM) that detects your hardware, picks a model size that fits, and constrains decoding so the JSON output is valid by construction. On 150 real DocVQA documents, grammar-constrained decoding took usable output from 2% to 79% and was faster. INT4 runs in 1.85 GB of VRAM at 47.7 tok/s on an L40S, and the ONNX vision encoder runs at 11.90 ms p50 on TensorRT, 109.8x faster than CPU and 1.62x faster than the CUDA execution provider. Every benchmark row runs in a fresh subprocess and records the provider the live session actually used, which caught two silent CPU fallbacks that advertised themselves as TensorRT before the real number was earned. These are encoder-only numbers; the decoder is still PyTorch.
       </p>
       <div class="project-tags">
         <span class="project-tag">SmolVLM</span>
