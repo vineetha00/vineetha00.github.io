@@ -630,15 +630,16 @@
           <a href="https://github.com/vineetha00/qualcomm-aihub" target="_blank" class="project-link">GitHub ↗</a>
         </div>
       </div>
-      <h3 class="project-name">INT8 Quantization on a Hexagon NPU</h3>
+      <h3 class="project-name">On-Device AI on Snapdragon NPUs</h3>
       <p class="project-desc">
-        INT8 MobileNetV2 on a Galaxy S24 (Snapdragon 8 Gen 3) through Qualcomm AI Hub: 0.37 to 0.28 ms with 105 of 105 layers resident on the Hexagon NPU, at a 0.18 point top-1 cost, measured only after verifying FP32 parity with PyTorch. Qwen3-0.6B W4A16 through QNN is in progress.
+        Two models taken from PyTorch to Qualcomm's Hexagon NPU through Qualcomm AI Hub, with every number linked to its AI Hub job. Qwen3-0.6B (W4A16) compiled into QNN context binaries for a Galaxy S25 (Snapdragon 8 Elite): 97 tok/s decode at 1K context and 40 tok/s at 4K, 29 ms to first token, and all 27.6K ops on the NPU. These are NPU graph latencies, so they exclude runtime overhead like sampling and tokenization. And INT8 MobileNetV2 on a Galaxy S24 (Snapdragon 8 Gen 3): 0.37 to 0.28 ms with 105 of 105 layers on the NPU, at a 0.18 point top-1 cost measured only after verifying FP32 parity with PyTorch.
       </p>
       <div class="project-tags">
         <span class="project-tag">Qualcomm AI Hub</span>
         <span class="project-tag">Hexagon NPU</span>
         <span class="project-tag">INT8</span>
         <span class="project-tag">QNN</span>
+        <span class="project-tag">On-device LLM</span>
       </div>
     </div>
 
