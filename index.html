@@ -439,16 +439,16 @@
         and enterprise LLM infrastructure at SHash AI, and my recent open-source work is on honest, reproducible edge-AI benchmarking.
       </p>
       <p>
-        Currently a co-op on the R&amp;D data science team at <strong>Alcon</strong>, where I'm the lead developer of a defect-report 
-        generation project for the optical design team. This summer I was a data science intern 
-        on supply chain analytics there, building optimization models whose insights went to 
-        leadership for Q3 consideration, and a predictive dissociation risk system that fills a gap 
-        no proactive tooling currently covers across North America cold-chain operations.
+        Currently a Data Scientist (co-op) on the R&amp;D data science team at <strong>Alcon</strong>, where I lead a GenAI tool 
+        on Amazon Bedrock that compares a new project's FMEA with its predecessor's, in an FDA-regulated 
+        medical-device environment. This summer I was a data science intern on supply chain analytics there: 
+        I built a GenAI data assistant that answers leadership's ad hoc data questions in seconds instead of 
+        up to a day, and forecasting and inventory optimization work that surfaced $3.7M in potential savings.
       </p>
       <p>
-        Before grad school, I spent two years at <strong>Tata Consultancy Services</strong> doing 
-        embedded C firmware development for automotive infotainment systems, working with 
-        CAN bus diagnostics and real-time constraints. That hardware-first background is 
+        Before grad school, I spent a year and a half at <strong>Tata Consultancy Services</strong> writing 
+        production embedded C for a General Motors Cadillac program on a Snapdragon SoC running QNX, 
+        under AUTOSAR and ISO 26262, and building a defect-diagnosis service that ran in production. That hardware-first background is 
         what makes my ML work different.
       </p>
     </div>
@@ -482,7 +482,7 @@
     <div class="research-grid">
 
       <div class="research-card">
-        <span class="research-tag">Biosignal AI · USC Khan Lab / CHLA · IEEE TBME / MRM (in prep)</span>
+        <span class="research-tag">Biosignal AI · USC Khan Lab / CHLA · Advanced Intelligent Systems (in prep)</span>
         <h3 class="research-title">ECG Reconstruction During MRI Scanning</h3>
         <p class="research-desc">
           Built a BiLSTM + transfer learning pipeline to reconstruct 12-lead ECG from a 
@@ -517,11 +517,14 @@
         <p class="research-desc">
           Improving training efficiency and cross-city generalization of PMNet, a published 
           deep learning model that replaces slow ray-tracing simulations for wireless network 
-          planning. Designed on-the-fly random augmentation that cut epochs-to-convergence 
-          44% at equivalent accuracy, via distributed DDP training on USC's CARC HPC cluster.
+          planning. Proposed the elevation input behind PMNet 2.5 and trained the 33M-parameter CNN to 
+          SSIM above 0.90 on 8x A40 GPUs (PyTorch DDP, SLURM). On-the-fly augmentation cut epochs to 
+          convergence 44% (110 to 62) and training time ~50% (25h to 12h) at equivalent accuracy.
         </p>
         <div class="research-metrics">
-          <span class="metric">44% faster convergence</span>
+          <span class="metric">44% fewer epochs</span>
+          <span class="metric">~50% less training time</span>
+          <span class="metric">SSIM &gt; 0.90</span>
           <span class="metric">SSIM ~0.91</span>
           <span class="metric">Multi-node DDP</span>
         </div>
@@ -567,12 +570,13 @@
       </div>
       <h3 class="project-name">SynapNet-Edge — Edge Model Compression, Measured Honestly</h3>
       <p class="project-desc">
-        An 8.7M-parameter hybrid SSM-attention-memory model with component-aware quantization and a 3.3K-parameter learned memory-eviction policy (71% of critical context retained under 90% memory pressure, versus 0% for FIFO/LRU). On a Raspberry Pi 4, bit-packed size fell from 16.6 MB to 10.2 MB (INT8) and 8.4 MB (INT4), within about 2 points of FP16 on retrieval up to 4K tokens, but latency rose 2–18% and RAM stayed near 350 MB because the Cortex-A72 has no native low-bit kernels. A matched-control study (11 variants, 3 seeds, paired bootstrap CIs) showed an earlier QAT gain was a fine-tuning effect, not a quantization effect.
+        An 8.7M-parameter hybrid SSM-attention-memory model with component-aware quantization and a 3.3K-parameter learned memory-eviction policy (71% of critical context retained under 90% memory pressure, versus 0% for FIFO/LRU). On a Raspberry Pi 4, bit-packed size fell from 16.6 MB to 10.2 MB (INT8) and 8.4 MB (INT4), within about 2 points of FP16 on retrieval up to 4K tokens, but latency rose 2–18% because the weights were dequantized on every pass. Real INT8 ONNX kernels then ran 1.54x faster single-threaded on an Apple M3, and the KV-cache eviction policy was benchmarked against H2O, SnapKV and PyramidKV. A matched-control study (11 variants, 3 seeds, paired bootstrap CIs) showed an earlier QAT gain was a fine-tuning effect, not a quantization effect.
       </p>
       <div class="project-tags">
         <span class="project-tag">PyTorch</span>
         <span class="project-tag">QAT</span>
         <span class="project-tag">SSM / Mamba</span>
+        <span class="project-tag">ONNX Runtime</span>
         <span class="project-tag">Raspberry Pi 4</span>
         <span class="project-tag">Edge AI</span>
       </div>
@@ -621,6 +625,25 @@
 
     <div class="project-card">
       <div class="project-top">
+        <span class="project-icon">📱</span>
+        <div class="project-links">
+          <a href="https://github.com/vineetha00/qualcomm-aihub" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">INT8 Quantization on a Hexagon NPU</h3>
+      <p class="project-desc">
+        INT8 MobileNetV2 on a Galaxy S24 (Snapdragon 8 Gen 3) through Qualcomm AI Hub: 0.37 to 0.28 ms with 105 of 105 layers resident on the Hexagon NPU, at a 0.18 point top-1 cost, measured only after verifying FP32 parity with PyTorch. Qwen3-0.6B W4A16 through QNN is in progress.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">Qualcomm AI Hub</span>
+        <span class="project-tag">Hexagon NPU</span>
+        <span class="project-tag">INT8</span>
+        <span class="project-tag">QNN</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
         <span class="project-icon">📦</span>
         <div class="project-links">
           <a href="https://github.com/vineetha00/promptops" target="_blank" class="project-link">GitHub ↗</a>
@@ -628,7 +651,7 @@
       </div>
       <h3 class="project-name">PromptOps — Git for LLM Prompts</h3>
       <p class="project-desc">
-        Open-source CLI bringing Git-style version control to LLM prompts. Semantic diffing via sentence-transformers, Thompson Sampling A/B testing, LLM-as-judge regression eval, an MCP server, and a GitHub Actions regression gate that blocks deploys on quality drops. Install from the v0.3.0 GitHub release (package promptops-git).
+        Open-source CLI bringing Git-style version control to LLM prompts. Semantic diffing via sentence-transformers, Thompson Sampling A/B testing, LLM-as-judge regression eval, an MCP server, and a GitHub Actions regression gate with three triggers (paired t-test, per-case collapse, per-dimension floor) calibrated on 90 run-to-run comparisons, because prompt regressions break a few inputs badly rather than all of them slightly. Install from the v0.3.0 GitHub release (package promptops-git).
       </p>
       <div class="project-tags">
         <span class="project-tag">Python</span>
@@ -648,7 +671,7 @@
       </div>
       <h3 class="project-name">AgentAudit — Multi-Agent Evaluation</h3>
       <p class="project-desc">
-        Open-source Python library that instruments multi-agent AI pipelines and evaluates the workflow, not just the final output. Scores inter-agent handoff quality via LLM-as-judge, attributes failures to the earliest responsible agent (bisecting instead of scanning), and detects degenerate retry loops with cost guardrails. Published on PyPI as agentaudit-eval.
+        Open-source Python library that instruments multi-agent AI pipelines and evaluates the workflow, not just the final output. Scores inter-agent handoff quality via LLM-as-judge, attributes failures to the earliest responsible agent (bisecting instead of scanning), and detects degenerate retry loops with cost guardrails. The judge is validated on a 60-trace benchmark with planted failures: Claude Sonnet reaches 86.7% attribution accuracy (Cohen kappa 0.92), and a local llama3.1-8B fails outright, an honest negative result. Published on PyPI as agentaudit-eval.
       </p>
       <div class="project-tags">
         <span class="project-tag">LangGraph</span>
@@ -692,7 +715,7 @@
       <span class="research-tag">Edge inference · SynapNet-Edge</span>
       <h3 class="research-title">Smaller is not automatically faster</h3>
       <p class="research-desc">
-        INT8 and INT4 models were up to 2x smaller on disk but 2–18% slower on a Raspberry Pi 4 with RAM unchanged. The weights are dequantized to float on every pass, the Cortex-A72 has no INT8 dot-product path, and the runtime and activations dwarf 8–17 MB of weights. Next: qnnpack or ONNX Runtime INT8 kernels, a quantized positional table, and a Pi 5 or NPU target.
+        INT8 and INT4 models were up to 2x smaller on disk but 2–18% slower on a Raspberry Pi 4 with RAM unchanged. The weights are dequantized to float on every pass, the Cortex-A72 has no INT8 dot-product path, and the runtime and activations dwarf 8–17 MB of weights. Switching to real ONNX Runtime INT8 kernels fixed it: 1.54x faster single-threaded on an Apple M3. On a Hexagon NPU, INT8 MobileNetV2 went from 0.37 to 0.28 ms with all 105 layers on the NPU.
       </p>
     </div>
 
@@ -733,21 +756,22 @@
 
       <div class="exp-item">
         <p class="exp-date">SEP 2026 – PRESENT</p>
-        <h3 class="exp-title">Co-op, R&amp;D Data Science Team</h3>
-        <p class="exp-company">Alcon · Remote</p>
+        <h3 class="exp-title">Data Scientist, R&amp;D Data Science (Co-op)</h3>
+        <p class="exp-company">Alcon · Johns Creek, GA (Remote)</p>
         <ul class="exp-bullets">
-          <li>Lead developer of a defect-report generation project for Alcon's optical design team.</li>
+          <li>Lead a GenAI tool for medical-device R&amp;D on FDA-regulated data, scoped with SMEs, that compares a new project's FMEA with its predecessor's so engineers triage only what changed.</li>
+          <li>Build the APIS/IQ-FMEA XML to JSON parser preserving structure-tree, failure-net and risk relationships; evaluate Amazon Bedrock Knowledge Bases on grounded answers and source traceability.</li>
         </ul>
       </div>
 
       <div class="exp-item">
-        <p class="exp-date">MAY 2026 – SEP 2026</p>
+        <p class="exp-date">MAY 2026 – AUG 2026</p>
         <h3 class="exp-title">Data Science Intern</h3>
         <p class="exp-company">Alcon · Supply Chain NA · Fort Worth, TX</p>
         <ul class="exp-bullets">
-          <li>Collaborated cross-functionally with Transportation, Customer Service, Data Science, and S&amp;OP to surface optimization insights that went to leadership for Q3 consideration.</li>
-          <li>Built a predictive dissociation risk model, a shipment-level early warning system that fills a gap: no proactive anomaly tracking existed.</li>
-          <li>Pipeline: K-Means, XGBoost, Prophet, PuLP linear programming, Monte Carlo on AWS SageMaker with Athena and MLflow.</li>
+          <li>Built a GenAI data assistant (ForeSight Pro agent, Amazon Bedrock, DynamoDB) that answers leadership's ad hoc data questions in plain English in seconds instead of up to a day of analyst wait; it shows the source data per answer, asks clarifying questions first, and guards against out-of-scope pulls. Handed off to the data science team.</li>
+          <li>Forecasting and inventory optimization (K-Means, XGBoost, Prophet) on AWS SageMaker and MLflow surfaced $3.7M in potential savings; moved capacity planning to p50/p95 reporting.</li>
+          <li>Worked cross-functionally with Transportation, Customer Service, Data Science and S&amp;OP; insights went to leadership for Q3 consideration. Scoped a shipment-level anomaly early-warning system.</li>
         </ul>
       </div>
 
@@ -756,7 +780,7 @@
         <h3 class="exp-title">LLM Engineer Intern</h3>
         <p class="exp-company">SHash AI · Remote</p>
         <ul class="exp-bullets">
-          <li>Architected an enterprise LLM system with privacy-preserving GenAI and federated learning (Flower); contributed to a forthcoming patent.</li>
+          <li>Architected an enterprise LLM system with privacy-preserving GenAI and federated learning (Flower); patent application filed.</li>
           <li>Deployed a 3-client Flower setup (TinyLlama + LoRA) across two machines and a MacBook Air, with client-side backpropagation independent of server updates so gradients never propagate to the server.</li>
           <li>Designed LLM evaluation harnesses for response quality, factual grounding, and safety across multi-turn dialogue; began extending to Mamba-based architectures for long-context efficiency.</li>
         </ul>
@@ -775,10 +799,11 @@
       <div class="exp-item">
         <p class="exp-date">OCT 2022 – MAY 2024</p>
         <h3 class="exp-title">Embedded Software Developer</h3>
-        <p class="exp-company">Tata Consultancy Services · Bangalore, India</p>
+        <p class="exp-company">Tata Consultancy Services (client: General Motors) · Bangalore, India</p>
         <ul class="exp-bullets">
-          <li>Diagnosed CAN bus infotainment defect via test bench analysis, simulation, and C firmware fix. Cut lighting latency 50% (200ms → &lt;100ms).</li>
-          <li>Owned unit test coverage for brightness and Vdata components across teams.</li>
+          <li>Owned three production C components (Functional Safety, Vehicle Data, Display Brightness) on a Snapdragon SoC running QNX for a Cadillac program, shipping across 2 releases under AUTOSAR and ISO 26262.</li>
+          <li>Proposed and built a defect-diagnosis service (React, FastAPI, XGBoost tracked in MLflow, PostgreSQL, Kubernetes), run in production for 4 months before handoff; auto-triaged ~80% of incoming Brightness defects and cut analysis time ~50%.</li>
+          <li>Built the Vehicle Data unit-test suite from scratch; resolved 100+ Jira defects with root-cause analysis. Reproduced a defect on the bench from CAN signals in Vector CANoe with no ECU access; the fix cut latency 50% (200 ms to under 100 ms).</li>
         </ul>
       </div>
 
