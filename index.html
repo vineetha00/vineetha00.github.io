@@ -257,6 +257,8 @@
     letter-spacing: 0.1em;
   }
 
+  .project-card.in-progress .project-links { margin-top: 30px; }
+
   .project-top {
     display: flex; justify-content: space-between; align-items: flex-start;
     margin-bottom: 16px;
@@ -269,6 +271,12 @@
     transition: color 0.2s;
   }
   .project-link:hover { color: var(--cyan); }
+
+  .project-award {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.74rem;
+    color: var(--green); background: #64FFDA11; border: 1px solid #64FFDA33;
+    padding: 6px 10px; border-radius: 2px; margin-bottom: 14px; align-self: flex-start;
+  }
 
   .project-name {
     font-family: 'Space Grotesk', sans-serif;
@@ -370,6 +378,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#research">Research</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#learnings">Learnings</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -386,7 +395,7 @@
     <p class="hero-desc">
       ML engineer building AI systems that work in production, in regulated environments, 
       and under real constraints — from biosignal reconstruction in MRI scanners to 
-      edge model compression on consumer hardware.
+      edge model compression and on-device inference benchmarking.
     </p>
     <div class="hero-cta">
       <a href="https://github.com/vineetha00" target="_blank" class="btn btn-primary">GitHub →</a>
@@ -403,8 +412,8 @@
     <span class="stat-label">ECG Reconstruction Correlation</span>
   </div>
   <div class="stat-item">
-    <span class="stat-number" data-target="4.4" data-decimal="1" data-suffix="x">0.0x</span>
-    <span class="stat-label">Edge Model Compression</span>
+    <span class="stat-number" data-target="1.99" data-decimal="2" data-suffix="x">0.00x</span>
+    <span class="stat-label">INT4 Model Size Cut, Measured on a Raspberry Pi 4</span>
   </div>
   <div class="stat-item">
     <span class="stat-number" data-target="44" data-suffix="%">0%</span>
@@ -427,13 +436,14 @@
         I'm an <strong>M.S. student at USC</strong> (ECE, Machine Learning & Data Science, Dec 2026) 
         building at the intersection of production ML, biosignal research, and embedded systems. 
         My work spans clinical AI collaborations with CHLA, Verizon-funded wireless research, 
-        and enterprise LLM infrastructure at SHash AI.
+        and enterprise LLM infrastructure at SHash AI, and my recent open-source work is on honest, reproducible edge-AI benchmarking.
       </p>
       <p>
-        Currently interning at <strong>Alcon</strong> on supply chain analytics — developing optimization 
-        models whose insights are under leadership consideration for Q3 implementation, and 
-        building a predictive dissociation risk system that fills a gap no proactive tooling 
-        currently covers across North America cold-chain operations.
+        Currently a co-op on the R&amp;D data science team at <strong>Alcon</strong>, where I'm the lead developer of a defect-report 
+        generation project for the optical design team. This summer I was a data science intern 
+        on supply chain analytics there, building optimization models whose insights went to 
+        leadership for Q3 consideration, and a predictive dissociation risk system that fills a gap 
+        no proactive tooling currently covers across North America cold-chain operations.
       </p>
       <p>
         Before grad school, I spent two years at <strong>Tata Consultancy Services</strong> doing 
@@ -456,6 +466,8 @@
         <span class="skill-tag">Monte Carlo Sim</span>
         <span class="skill-tag">XGBoost / Prophet</span>
         <span class="skill-tag">Tableau / Power BI</span>
+        <span class="skill-tag">MCP / Amazon Bedrock</span>
+        <span class="skill-tag">ONNX Runtime</span>
       </div>
     </div>
   </div>
@@ -515,21 +527,6 @@
         </div>
       </div>
 
-      <div class="research-card">
-        <span class="research-tag">Agentic AI · USC Data Science Lab · Prof. Prasanna</span>
-        <h3 class="research-title">DeepCommit — Software Evolution DAG Reconstruction</h3>
-        <p class="research-desc">
-          Contributing to DeepCommit, an open-source agentic pipeline that reconstructs 
-          verifiable Milestone DAGs from noisy commit histories using Claude Opus 4.5. 
-          Working with PhD student Gangda Deng on features and scalability for future RL training.
-        </p>
-        <div class="research-metrics">
-          <span class="metric">87.1% test collection</span>
-          <span class="metric">arXiv published</span>
-          <span class="metric">Open-source</span>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -543,24 +540,21 @@
 
     <div class="project-card">
       <div class="project-top">
-        <span class="project-icon">📦</span>
+        <span class="project-icon">🏠</span>
         <div class="project-links">
-          <a href="https://github.com/vineetha00/promptops" target="_blank" class="project-link">GitHub ↗</a>
-          <a href="https://pypi.org/project/promptops" target="_blank" class="project-link">PyPI ↗</a>
+          <a href="https://github.com/vineetha00/hearth" target="_blank" class="project-link">GitHub ↗</a>
         </div>
       </div>
-      <h3 class="project-name">PromptOps — Git for LLM Prompts</h3>
+      <h3 class="project-name">Hearth — A Voice Diary That Remembers What You Promised</h3>
       <p class="project-desc">
-        Open-source CLI bringing Git-style version control to LLM prompts. 
-        Semantic diffing via sentence-transformers, Thompson Sampling A/B testing, 
-        and a GitHub Actions regression gate that blocks deploys on quality drops.
+        An Alexa+ add-on built as a self-hosted MCP server (Streamable HTTP, six tools) for people who live alone and lose track of what they said they would do. It acknowledges your day without giving advice, remembers your commitments, and tells you what matters most and why. Amazon Bedrock extracts commitments and tone; dates are resolved in code, not by the model, and prioritisation is deterministic. Tested end to end against an Alexa+ simulator; registering it with real Alexa+ is not done yet.
       </p>
       <div class="project-tags">
         <span class="project-tag">Python</span>
-        <span class="project-tag">Thompson Sampling</span>
         <span class="project-tag">MCP</span>
-        <span class="project-tag">GitHub Actions</span>
-        <span class="project-tag">PyPI</span>
+        <span class="project-tag">Amazon Bedrock</span>
+        <span class="project-tag">SQLite</span>
+        <span class="project-tag">Alexa+</span>
       </div>
     </div>
 
@@ -571,18 +565,76 @@
           <a href="https://github.com/vineetha00/SynapNet-Edge" target="_blank" class="project-link">GitHub ↗</a>
         </div>
       </div>
-      <h3 class="project-name">SynapNet-Edge — Edge Model Compression</h3>
+      <h3 class="project-name">SynapNet-Edge — Edge Model Compression, Measured Honestly</h3>
       <p class="project-desc">
-        Hybrid SSM-attention-memory architecture with component-aware joint quantization 
-        (2-bit SSM QAT, 4-bit attention via SmoothQuant + AWQ) and a learned 
-        BAEE memory-eviction policy. 4.4x compression with no accuracy loss.
+        An 8.7M-parameter hybrid SSM-attention-memory model with component-aware quantization and a 3.3K-parameter learned memory-eviction policy (71% of critical context retained under 90% memory pressure, versus 0% for FIFO/LRU). On a Raspberry Pi 4, bit-packed size fell from 16.6 MB to 10.2 MB (INT8) and 8.4 MB (INT4), within about 2 points of FP16 on retrieval up to 4K tokens, but latency rose 2–18% and RAM stayed near 350 MB because the Cortex-A72 has no native low-bit kernels. A matched-control study (11 variants, 3 seeds, paired bootstrap CIs) showed an earlier QAT gain was a fine-tuning effect, not a quantization effect.
       </p>
       <div class="project-tags">
         <span class="project-tag">PyTorch</span>
         <span class="project-tag">QAT</span>
         <span class="project-tag">SSM / Mamba</span>
+        <span class="project-tag">Raspberry Pi 4</span>
         <span class="project-tag">Edge AI</span>
-        <span class="project-tag">Hugging Face</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-icon">👁️</span>
+        <div class="project-links">
+          <a href="https://github.com/vineetha00/visionflow" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">VisionFlow — On-Device Vision-Language Pipeline</h3>
+      <p class="project-desc">
+        An edge-first quantized VLM pipeline (SmolVLM) that detects your hardware, picks a model size that fits, and constrains decoding so the JSON output is valid by construction. On 150 real DocVQA documents, grammar-constrained decoding took usable output from 2% to 79% and was faster. INT4 runs in 1.85 GB of VRAM at 47.7 tok/s on an L40S, and the ONNX vision encoder runs 67.8x faster on CUDA than CPU. Every benchmark row runs in a fresh subprocess, and a TensorRT row that silently fell back to CPU is flagged rather than reported.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">SmolVLM</span>
+        <span class="project-tag">bitsandbytes</span>
+        <span class="project-tag">ONNX Runtime</span>
+        <span class="project-tag">Constrained decoding</span>
+        <span class="project-tag">Python</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-icon">🎙️</span>
+        <div class="project-links">
+          <a href="https://github.com/vineetha00/MnemoSense" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">MnemoSense — A Local Memory Assistant You Can Talk To</h3>
+      <span class="project-award">🏆 2nd place, Hardware Track · LA Tech Week AI/ML Buildathon 2025</span>
+      <p class="project-desc">
+        A team project: an always-on assistant that logs audio around the clock but stores only summaries, and answers spoken questions about your day through a voice UI (the answer is spoken and shown). It also captions video, from a URL or a live camera every 10 seconds, into the same retrieval index. Runs entirely on a free local LLM through Ollama, with Whisper for speech-to-text.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Ollama</span>
+        <span class="project-tag">Whisper</span>
+        <span class="project-tag">RAG</span>
+        <span class="project-tag">Voice UI</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-icon">📦</span>
+        <div class="project-links">
+          <a href="https://github.com/vineetha00/promptops" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">PromptOps — Git for LLM Prompts</h3>
+      <p class="project-desc">
+        Open-source CLI bringing Git-style version control to LLM prompts. Semantic diffing via sentence-transformers, Thompson Sampling A/B testing, LLM-as-judge regression eval, an MCP server, and a GitHub Actions regression gate that blocks deploys on quality drops. Install from the v0.3.0 GitHub release (package promptops-git).
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Thompson Sampling</span>
+        <span class="project-tag">MCP</span>
+        <span class="project-tag">GitHub Actions</span>
       </div>
     </div>
 
@@ -591,23 +643,81 @@
         <span class="project-icon">🔬</span>
         <div class="project-links">
           <a href="https://github.com/vineetha00/agentaudit" target="_blank" class="project-link">GitHub ↗</a>
-          <a href="https://pypi.org/project/agentaudit" target="_blank" class="project-link">PyPI ↗</a>
+          <a href="https://pypi.org/project/agentaudit-eval/" target="_blank" class="project-link">PyPI ↗</a>
         </div>
       </div>
       <h3 class="project-name">AgentAudit — Multi-Agent Evaluation</h3>
       <p class="project-desc">
-        Open-source Python library that instruments multi-agent AI pipelines and 
-        evaluates the workflow, not just the final output. Scores inter-agent 
-        handoff quality via LLM-as-judge, attributes failures to specific agents, 
-        and detects degenerate retry loops with cost guardrails.
+        Open-source Python library that instruments multi-agent AI pipelines and evaluates the workflow, not just the final output. Scores inter-agent handoff quality via LLM-as-judge, attributes failures to the earliest responsible agent (bisecting instead of scanning), and detects degenerate retry loops with cost guardrails. Published on PyPI as agentaudit-eval.
       </p>
       <div class="project-tags">
         <span class="project-tag">LangGraph</span>
         <span class="project-tag">CrewAI</span>
-        <span class="project-tag">Ollama</span>
         <span class="project-tag">LLM-as-judge</span>
+        <span class="project-tag">CI gates</span>
         <span class="project-tag">Python</span>
       </div>
+    </div>
+
+    <div class="project-card in-progress">
+      <div class="project-top">
+        <span class="project-icon">🛰️</span>
+        <div class="project-links">
+          <a href="https://github.com/vineetha00/edge-deploy-agent" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">Edge Deploy Agent — Nemotron on a Raspberry Pi</h3>
+      <p class="project-desc">
+        A Nemotron-driven agent that optimizes and benchmarks models on a Raspberry Pi 4 within a latency and RAM budget, with guardrails, observability and evals. Early skeleton built for the Nebius x NVIDIA Global AI Hackathon; the plan is a LangGraph agent with a human-approval gate, OpenTelemetry traces, NeMo Guardrails and a red-team suite.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">Nemotron</span>
+        <span class="project-tag">LangGraph</span>
+        <span class="project-tag">OpenTelemetry</span>
+        <span class="project-tag">NeMo Guardrails</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LEARNINGS -->
+<section id="learnings">
+  <p class="section-eyebrow">04 — Learnings</p>
+  <h2 class="section-title">What the benchmarks taught me</h2>
+  <div class="divider"></div>
+  <div class="research-grid">
+
+    <div class="research-card">
+      <span class="research-tag">Edge inference · SynapNet-Edge</span>
+      <h3 class="research-title">Smaller is not automatically faster</h3>
+      <p class="research-desc">
+        INT8 and INT4 models were up to 2x smaller on disk but 2–18% slower on a Raspberry Pi 4 with RAM unchanged. The weights are dequantized to float on every pass, the Cortex-A72 has no INT8 dot-product path, and the runtime and activations dwarf 8–17 MB of weights. Next: qnnpack or ONNX Runtime INT8 kernels, a quantized positional table, and a Pi 5 or NPU target.
+      </p>
+    </div>
+
+    <div class="research-card">
+      <span class="research-tag">Experiment design · SynapNet-Edge</span>
+      <h3 class="research-title">Control for the fine-tune, not just the quantizer</h3>
+      <p class="research-desc">
+        A quantization-aware-training gain over FP16 vanished once FP16 got the same 200 fine-tuning steps; it was slightly ahead at 4K context. The fix was a matched control, 11 variants, 3 seeds and paired bootstrap confidence intervals instead of single-run comparisons.
+      </p>
+    </div>
+
+    <div class="research-card">
+      <span class="research-tag">Measurement hygiene · SynapNet-Edge · VisionFlow</span>
+      <h3 class="research-title">Audit the benchmark before you trust it</h3>
+      <p class="research-desc">
+        I caught three of my own errors before reporting: a benchmark run on the wrong architecture, a 3 MB positional table missing from the size estimate, and a 48-question eval too noisy to rank variants. In VisionFlow, two tiers measured in one process reported memory figures 0.01% apart because the second read the first one's allocations, so every configuration now runs in a fresh subprocess.
+      </p>
+    </div>
+
+    <div class="research-card">
+      <span class="research-tag">Product scope · Hearth</span>
+      <h3 class="research-title">Write the limits next to the results</h3>
+      <p class="research-desc">
+        Each of my recent READMEs has an honest-limits section: Hearth is single-user and untested against real Alexa+, VisionFlow reports 21 fields over three images, and a TensorRT row that fell back to CPU is labelled as such. Claims that survive a skeptical reader are the only ones worth putting on a resume.
+      </p>
     </div>
 
   </div>
@@ -616,30 +726,39 @@
 <!-- EXPERIENCE -->
 <section id="experience" style="background: var(--navy-mid); max-width: 100%; padding: 100px 0;">
   <div style="max-width: 1100px; margin: 0 auto; padding: 0 60px;">
-    <p class="section-eyebrow">04 — Experience</p>
+    <p class="section-eyebrow">05 — Experience</p>
     <h2 class="section-title">Where I've worked</h2>
     <div class="divider"></div>
     <div class="exp-timeline">
 
       <div class="exp-item">
-        <p class="exp-date">2026 – PRESENT</p>
-        <h3 class="exp-title">Data Science & ML Intern</h3>
+        <p class="exp-date">SEP 2026 – PRESENT</p>
+        <h3 class="exp-title">Co-op, R&amp;D Data Science Team</h3>
+        <p class="exp-company">Alcon · Remote</p>
+        <ul class="exp-bullets">
+          <li>Lead developer of a defect-report generation project for Alcon's optical design team.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-date">MAY 2026 – SEP 2026</p>
+        <h3 class="exp-title">Data Science Intern</h3>
         <p class="exp-company">Alcon · Supply Chain NA · Fort Worth, TX</p>
         <ul class="exp-bullets">
-          <li>Collaborated cross-functionally with Transportation, Customer Service, Data Science, and S&OP to surface optimization insights under leadership consideration for Q3 implementation.</li>
-          <li>Building predictive dissociation risk model — shipment-level early warning system that fills a current gap; no proactive anomaly tracking exists today.</li>
+          <li>Collaborated cross-functionally with Transportation, Customer Service, Data Science, and S&amp;OP to surface optimization insights that went to leadership for Q3 consideration.</li>
+          <li>Built a predictive dissociation risk model, a shipment-level early warning system that fills a gap: no proactive anomaly tracking existed.</li>
           <li>Pipeline: K-Means, XGBoost, Prophet, PuLP linear programming, Monte Carlo on AWS SageMaker with Athena and MLflow.</li>
         </ul>
       </div>
 
       <div class="exp-item">
-        <p class="exp-date">NOV 2025 – PRESENT</p>
+        <p class="exp-date">NOV 2025 – SEP 2026</p>
         <h3 class="exp-title">LLM Engineer Intern</h3>
         <p class="exp-company">SHash AI · Remote</p>
         <ul class="exp-bullets">
-          <li>Architecting enterprise LLM system with privacy-preserving GenAI and federated learning (Flower); contributing to a forthcoming patent.</li>
-          <li>Engineered client-side backpropagation independent of server updates, ensuring gradients don't propagate to the server.</li>
-          <li>Extending to Mamba-based architectures for improved long-context efficiency in federated settings.</li>
+          <li>Architected an enterprise LLM system with privacy-preserving GenAI and federated learning (Flower); contributed to a forthcoming patent.</li>
+          <li>Deployed a 3-client Flower setup (TinyLlama + LoRA) across two machines and a MacBook Air, with client-side backpropagation independent of server updates so gradients never propagate to the server.</li>
+          <li>Designed LLM evaluation harnesses for response quality, factual grounding, and safety across multi-turn dialogue; began extending to Mamba-based architectures for long-context efficiency.</li>
         </ul>
       </div>
 
@@ -669,11 +788,11 @@
 
 <!-- CONTACT -->
 <div class="contact-section" id="contact">
-  <p class="section-eyebrow" style="justify-content: center; margin-bottom: 12px;">05 — Contact</p>
+  <p class="section-eyebrow" style="justify-content: center; margin-bottom: 12px;">06 — Contact</p>
   <h2 class="contact-title">Let's build something together</h2>
   <p class="contact-desc">
     Open to full-time roles in R&D, medical AI, and production ML systems.<br>
-    Graduating December 2026. Based in Los Angeles, CA.
+    Graduating December 2026, available January 2027. Based in Los Angeles, CA.
   </p>
   <div class="contact-links">
     <a href="mailto:vineethavc25@gmail.com" class="contact-link">vineethavc25@gmail.com</a>
@@ -696,6 +815,7 @@ const roles = [
   'ML Researcher.',
   'Embedded Systems Engineer.',
   'Production AI Builder.',
+  'Edge AI Engineer.',
   'Biosignal Scientist.',
 ];
 let roleIdx = 0, charIdx = 0, deleting = false;
