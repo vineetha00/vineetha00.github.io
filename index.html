@@ -625,6 +625,30 @@
 
     <div class="project-card">
       <div class="project-top">
+        <span class="project-icon">🛰️</span>
+        <div class="project-links">
+          <a href="https://github.com/vineetha00/edge-deploy-agent" target="_blank" class="project-link">GitHub ↗</a>
+          <a href="https://youtu.be/2QCPIlOW3wk" target="_blank" class="project-link">Demo ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">Edge Deploy Agent — An Agent That Tunes Models on a Real Raspberry Pi</h3>
+      <span class="project-award">Nebius x NVIDIA Global AI Hackathon · Coding &amp; Agentic Engineering track</span>
+      <p class="project-desc">
+        A Nemotron agent (LangGraph) that finds the fastest way to run a speech model (wav2vec2) on a Raspberry Pi 4 within latency, memory and accuracy budgets, by benchmarking real configurations on the device. It picked dynamic INT8 with 4 threads and extended graph optimizations: 1932 ms p95, 26% faster and 39% less RAM than the same-settings FP32 baseline, for +0.23 points of WER. The winner is exported to Triton Inference Server on Kubernetes, provisioned with Terraform. Because the agent reads web docs, it sits behind layered prompt-injection defenses (regex sanitizer, NeMo Guardrails input and output rails, and a deterministic allowlist the LLM cannot widen); in 60 attack attempts, none reached execution on the Pi. Every trial is tracked in MLflow and traced with OpenTelemetry.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">Nemotron</span>
+        <span class="project-tag">LangGraph</span>
+        <span class="project-tag">NeMo Guardrails</span>
+        <span class="project-tag">Triton</span>
+        <span class="project-tag">Kubernetes</span>
+        <span class="project-tag">Terraform</span>
+        <span class="project-tag">Raspberry Pi 4</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
         <span class="project-icon">📱</span>
         <div class="project-links">
           <a href="https://github.com/vineetha00/qualcomm-aihub" target="_blank" class="project-link">GitHub ↗</a>
