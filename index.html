@@ -468,6 +468,8 @@
         <span class="skill-tag">Tableau / Power BI</span>
         <span class="skill-tag">MCP / Amazon Bedrock</span>
         <span class="skill-tag">ONNX Runtime</span>
+        <span class="skill-tag">Bare-metal ARM / STM32</span>
+        <span class="skill-tag">Kernel Optimization</span>
       </div>
     </div>
   </div>
@@ -604,6 +606,48 @@
 
     <div class="project-card">
       <div class="project-top">
+        <span class="project-icon">🧮</span>
+        <div class="project-links">
+          <a href="https://github.com/vineetha00/flashattn-amx" target="_blank" class="project-link">GitHub ↗</a>
+          <a href="https://pypi.org/project/flashattn-amx/" target="_blank" class="project-link">PyPI ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">flashattn-amx — FlashAttention in C on Apple's AMX</h3>
+      <p class="project-desc">
+        The FlashAttention forward pass in about 130 lines of C, running its matmuls on Apple's AMX matrix coprocessor through Accelerate SGEMM, with vForce for the exponentials and GCD for parallelism. Online softmax avoids ever storing the full score matrix, causal masking skips whole blocks, and the 256x256 tiles are sized to fit the M3's 128 KiB L1 cache. On an M3 it is 1.2 to 2.2x faster than PyTorch's own flash-attention CPU kernel on every tested shape (peak 634 GFLOP/s) and 1.19 to 1.28x faster end to end in a GPT-2-small-sized model, with a max logit difference of 4e-6. A100 and M3 GPU tables are included to show where it does not win. Published on PyPI as flashattn-amx.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">C</span>
+        <span class="project-tag">Apple AMX</span>
+        <span class="project-tag">Accelerate</span>
+        <span class="project-tag">FlashAttention</span>
+        <span class="project-tag">PyTorch</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-icon">🔌</span>
+        <div class="project-links">
+          <a href="https://github.com/vineetha00/renode-fw-tests" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">renode-fw-tests — Bare-Metal STM32 Firmware, Tested in CI</h3>
+      <p class="project-desc">
+        Register-level C firmware for an STM32F407 (Cortex-M4) with no vendor HAL, no CMSIS and no C library: a hand-written vector table and linker script, RCC clock gating, GPIO alternate-function (AF7) pin muxing and a polled USART2 driver at 115200 baud. A Robot Framework suite runs in GitHub Actions on every push: it boots the firmware in the Renode emulator, checks the UART output, and reads the GPIO and USART registers back to confirm the hardware was configured as intended.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">C</span>
+        <span class="project-tag">ARM Cortex-M4</span>
+        <span class="project-tag">STM32</span>
+        <span class="project-tag">Renode</span>
+        <span class="project-tag">Robot Framework</span>
+        <span class="project-tag">GitHub Actions</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
         <span class="project-icon">🎙️</span>
         <div class="project-links">
           <a href="https://github.com/vineetha00/MnemoSense" target="_blank" class="project-link">GitHub ↗</a>
@@ -704,25 +748,6 @@
         <span class="project-tag">LLM-as-judge</span>
         <span class="project-tag">CI gates</span>
         <span class="project-tag">Python</span>
-      </div>
-    </div>
-
-    <div class="project-card in-progress">
-      <div class="project-top">
-        <span class="project-icon">🛰️</span>
-        <div class="project-links">
-          <a href="https://github.com/vineetha00/edge-deploy-agent" target="_blank" class="project-link">GitHub ↗</a>
-        </div>
-      </div>
-      <h3 class="project-name">Edge Deploy Agent — Nemotron on a Raspberry Pi</h3>
-      <p class="project-desc">
-        A Nemotron-driven agent that optimizes and benchmarks models on a Raspberry Pi 4 within a latency and RAM budget, with guardrails, observability and evals. Early skeleton built for the Nebius x NVIDIA Global AI Hackathon; the plan is a LangGraph agent with a human-approval gate, OpenTelemetry traces, NeMo Guardrails and a red-team suite.
-      </p>
-      <div class="project-tags">
-        <span class="project-tag">Nemotron</span>
-        <span class="project-tag">LangGraph</span>
-        <span class="project-tag">OpenTelemetry</span>
-        <span class="project-tag">NeMo Guardrails</span>
       </div>
     </div>
 
