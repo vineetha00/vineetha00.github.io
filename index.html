@@ -395,7 +395,7 @@
     <p class="hero-desc">
       ML engineer building AI systems that work in production, in regulated environments, 
       and under real constraints — from biosignal reconstruction in MRI scanners to 
-      edge model compression and on-device inference benchmarking.
+      GPU kernels, LLM serving benchmarks and on-device inference.
     </p>
     <div class="hero-cta">
       <a href="https://github.com/vineetha00" target="_blank" class="btn btn-primary">GitHub →</a>
@@ -436,7 +436,7 @@
         I'm an <strong>M.S. student at USC</strong> (ECE, Machine Learning & Data Science, Dec 2026) 
         building at the intersection of production ML, biosignal research, and embedded systems. 
         My work spans clinical AI collaborations with CHLA, Verizon-funded wireless research, 
-        and enterprise LLM infrastructure at SHash AI, and my recent open-source work is on honest, reproducible edge-AI benchmarking.
+        and enterprise LLM infrastructure at SHash AI. My recent work is on inference: CUDA kernels, vLLM serving benchmarks, and open-source fixes to PyTorch's ExecuTorch runtime and SGLang.
       </p>
       <p>
         Currently a Data Scientist (co-op) on the R&amp;D data science team at <strong>Alcon</strong>, where I lead a GenAI tool 
@@ -470,6 +470,9 @@
         <span class="skill-tag">ONNX Runtime</span>
         <span class="skill-tag">Bare-metal ARM / STM32</span>
         <span class="skill-tag">Kernel Optimization</span>
+        <span class="skill-tag">CUDA C/C++</span>
+        <span class="skill-tag">vLLM / SGLang</span>
+        <span class="skill-tag">ExecuTorch</span>
       </div>
     </div>
   </div>
@@ -545,12 +548,72 @@
 
     <div class="project-card">
       <div class="project-top">
+        <span class="project-icon">🔧</span>
+        <div class="project-links">
+          <a href="https://github.com/search?q=author%3Avineetha00+is%3Apr&type=pullrequests" target="_blank" class="project-link">PRs ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">Open-Source Fixes — ExecuTorch and SGLang</h3>
+      <p class="project-desc">
+        I audited the operator lowering code in ExecuTorch's Apple MLX GPU backend against PyTorch's own semantics and found three correctness bugs: an integer overflow in cumsum, and runtime failures in argmax/argmin and repeat_interleave. I reported each one and opened a fix PR with regression tests, validated on Apple Silicon through the C++ op test runner (pytorch/executorch #25521, #25522, #25524, in review). In SGLang, I fixed a crash in the serving benchmark when every request fails, with a CPU regression test (sgl-project/sglang #52436, in review).
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">ExecuTorch</span>
+        <span class="project-tag">Apple MLX</span>
+        <span class="project-tag">PyTorch</span>
+        <span class="project-tag">SGLang</span>
+        <span class="project-tag">C++</span>
+        <span class="project-tag">Python</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-icon">📈</span>
+        <div class="project-links">
+          <a href="https://github.com/vineetha00/gpu-inference-lab" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+      </div>
+      <h3 class="project-name">GPU Inference Lab — vLLM Serving Under Load</h3>
+      <p class="project-desc">
+        Benchmarked vLLM serving Qwen2.5-1.5B on an NVIDIA A10 with my own async streaming load generator, from 1 to 128 concurrent users, measuring time to first token, time per output token and throughput. Continuous batching raised output throughput 27x (113 to 3,016 tokens/s) for a 4.7x rise in per-token latency, and the server saturated past 64 users. The point is the tradeoff curve, not a single headline number.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">vLLM</span>
+        <span class="project-tag">NVIDIA A10</span>
+        <span class="project-tag">TTFT / TPOT</span>
+        <span class="project-tag">asyncio</span>
+        <span class="project-tag">Python</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <span class="project-icon">🟩</span>
+        <div class="project-links">
+        </div>
+      </div>
+      <h3 class="project-name">CUDA Kernels — Tiling, Coalescing, Bank Conflicts</h3>
+      <p class="project-desc">
+        Hand-written CUDA kernels from USC EE 508 (Hardware Foundations for ML), timed on an NVIDIA A10 with every result validated against a CPU reference. A tiled shared-memory matmul (1024x1024, 32x32 tiles) ran 2x faster than my naive kernel (47.3 to 24.1 ms) and 131x faster than a single-threaded CPU loop. Coalesced memory access ran 2.5x faster than uncoalesced on a 4096x4096 matrix, and padding the shared-memory tile to remove bank conflicts gave 1.2x on a transpose. Course repo is private, so there is no public link.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">CUDA C/C++</span>
+        <span class="project-tag">Shared memory</span>
+        <span class="project-tag">Memory coalescing</span>
+        <span class="project-tag">NVIDIA A10</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
         <span class="project-icon">🏠</span>
         <div class="project-links">
           <a href="https://github.com/vineetha00/hearth" target="_blank" class="project-link">GitHub ↗</a>
         </div>
       </div>
       <h3 class="project-name">Hearth — A Voice Diary That Remembers What You Promised</h3>
+      <span class="project-award">Amazon Developer Hackathon 2026 · Alexa+ MCP track</span>
       <p class="project-desc">
         An Alexa+ add-on built as a self-hosted MCP server (Streamable HTTP, six tools) for people who live alone and lose track of what they said they would do. It acknowledges your day without giving advice, remembers your commitments, and tells you what matters most and why. Amazon Bedrock extracts commitments and tone; dates are resolved in code, not by the model, and prioritisation is deterministic. Tested end to end against an Alexa+ simulator; registering it with real Alexa+ is not done yet.
       </p>
@@ -891,6 +954,7 @@ const roles = [
   'Embedded Systems Engineer.',
   'Production AI Builder.',
   'Edge AI Engineer.',
+  'Inference & GPU Performance.',
   'Biosignal Scientist.',
 ];
 let roleIdx = 0, charIdx = 0, deleting = false;
