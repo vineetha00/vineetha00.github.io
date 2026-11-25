@@ -555,7 +555,7 @@
       </div>
       <h3 class="project-name">Open-Source Fixes — ExecuTorch and SGLang</h3>
       <p class="project-desc">
-        I audited the operator lowering code in ExecuTorch's Apple MLX GPU backend against PyTorch's own semantics and found three correctness bugs: an integer overflow in cumsum, and runtime failures in argmax/argmin and repeat_interleave. I reported each one and opened a fix PR with regression tests, validated on Apple Silicon through the C++ op test runner (pytorch/executorch #25521, #25522, #25524, in review). In SGLang, I fixed a crash in the serving benchmark when every request fails, with a CPU regression test (sgl-project/sglang #52436, in review).
+        I audited the operator lowering code in ExecuTorch's Apple MLX GPU backend against PyTorch's own semantics and found three correctness bugs: an integer overflow in cumsum, and runtime failures in argmax/argmin and repeat_interleave. I reported each one and opened a fix PR with regression tests, validated on Apple Silicon through the C++ op test runner (pytorch/executorch #25521, #25522, #25524, all three approved). In SGLang, I fixed a crash in the serving benchmark when every request fails, with a CPU regression test (sgl-project/sglang #52436, in review).
       </p>
       <div class="project-tags">
         <span class="project-tag">ExecuTorch</span>
